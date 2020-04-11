@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xit.dao.CreateclubDao">
+	<!-- 插入创建社团请求信息 -->
+	<insert id="insertCreateclub">
+		insert into createclub(userid,club_name,club_brief)
+		value(#{userid},#{clubName},#{clubBrief})
+	</insert>
+	<!-- 查询所有创建社团请求并分页 -->
+	<select id="selectBypage" resultMap="createClubInfo">
+		select c.*,u.name,u.phone,u.grade,u.professional
+		from createclub c LEFT JOIN user u ON c.userid=u.id
+		limit #{pageNo},#{pageSize}
+	</select>
+	<select id="selectCount" resultType="int">
+		select count(*) from createclub
+	</select>
+	<!-- 同意添加社团请求 -->
+	<insert id="insertClub">
+		insert into club(clubName,clubBrief,userId)
+		value(#{clubname},#{clubbrief},#{userid})
+	</insert>
+	<!-- 同意添加社团后删除创建社团请求信息 -->
+	<delete id="deletecreateclub">
+		delete from createclub
+		where userid=#{userid}
+	</delete>
+	<!-- 同意添加社团后修改创建者为社长 -->
+	<update id="updaterole_id">
+		update user
+		set role_id='2'
+		where id=#{userid}
+	</update>
+	<!-- 不同意创建社团请求 -->
+	<delete id="deletecreaterequest">
+		delete from createclub
+		where id=#{createclubId}
+	</delete>
+	<!-- 查询用户是否已经创建社团 -->
+	<select id="selectCreateclub" resultType="int">
+		select count(*) from
+		createclub
+		where userid=#{userid}
+	</select>
+	
+	<resultMap type="com.xit.pojo.Createclub" id="createClubInfo">
+		<id property="id" column="id"/>
+		<result property="clubName" column="club_name"/>
+		<result property="clubBrief" column="club_brief"/>
+		<result property="userId" column="userid"/>
+		<association property="user" javaType="com.xit.pojo.User">
+			<id property="id" column="id"/>
+			<result property="name" column="name"/>
+			<result property="phone" column="phone"/>
+			<result property="grade" column="grade"/>
+			<result property="professional" column="professional"/>
+		</association>
+	</resultMap>
+	
+</mapper>

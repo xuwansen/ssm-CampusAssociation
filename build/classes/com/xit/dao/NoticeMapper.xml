@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xit.dao.NoticeDao">
+	<!-- 查询出5条最新的公告信息 -->
+	<select id="selectNotice" resultType="notice">
+		select title,article,date
+		from notice
+		order by date DESC
+		limit 0,5
+	</select>
+	<!-- 查找所有公告或通过前台表单输入的条件查询公告 -->
+	<select id="selectNoticeByCondition" resultType="notice">
+		select n.* from notice n
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="title!=null and title!=''">
+				and n.title like '%${title}%'
+			</if>
+			<if test="id!= null and id!= ''">
+				and n.id = #{id}
+			</if>
+		</trim>
+		limit #{pageNo},#{pageSize}
+	</select>
+	<!-- 用于分页时查询符合条件的总记录数 -->
+	<select id="selectNoticeCountByCondition" resultType="int">
+		select count(*) from notice n
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="title!=null and title!=''">
+				and n.title like '%${title}%'
+			</if>
+			<if test="id!= null and id!= ''">
+				and n.id = #{id}
+			</if>
+		</trim>
+	</select>
+	<!-- 添加公告 -->
+	<insert id="insertNotice">
+		insert into notice(title,article,date)
+		values(#{title},#{article},#{date})
+	</insert>
+	<!-- 删除公告 -->
+	<delete id="deleteNoticeById">
+		DELETE from notice where id=#{id}
+	</delete>
+	<!-- updateClub -->
+	<!-- 根据Id查询用户信息 -->
+	<select id="selectNoticeById" resultType="notice">
+		select * from notice
+		where id=#{id}
+	</select>
+	<!-- 根据Id修改公告信息 -->
+	<update id="updateNoticle">
+		update notice
+		set title=#{title},article=#{article},date=#{date}
+		WHERE id=#{id}
+	</update>
+</mapper>

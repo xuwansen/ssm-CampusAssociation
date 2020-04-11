@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 名字空间 1、用于区分 2、绑定接口 -->
+<!-- <mapper namespace="com.xit.pojo.UserMapper"> -->
+<mapper namespace="com.xit.dao.JoinclubDao">
+	<!-- addJoin -->
+	<insert id="insertJoin">
+		insert into joinclub(clubId,userId)
+		value(#{clubId},#{userId})
+	</insert>
+	<!-- 查询joinclublist通过userId -->
+	<select id="selectJoinlist" resultType="joinclub">
+		select * from joinclub
+		where userId=#{userId}
+	</select>
+	<!-- 查询joinclub通过clubId，userId -->
+	<select id="selectjoin" resultType="joinclub">
+		select * from joinclub
+		where
+		clubId=#{clubId} and userId=#{userId}
+	</select>
+	<!-- 退出社团 -->
+	<delete id="deleteJoin">
+		delete from joinclub
+		where userId=#{userId} and clubId=#{clubId}
+	</delete>
+	<!-- 显示前台加入社团人员名单 -->
+	<select id="selectJoinClublist" resultType="joinclub">
+		select u.*,c.*,j.id
+		joinclubid from user u left join joinclub j on u.id=j.userId
+		left join club c on c.clubId=j.clubId
+		where j.clubId=#{clubId}
+		limit #{pageNo},#{pageSize}
+	</select>
+	<!-- 统计报名各个社团的总数 -->
+	<select id="selectCount" resultType="int">
+		select Count(*) from user u
+		left join joinclub j on u.id=j.userId
+		left join club c on c.clubId=j.clubId
+		where c.clubId=#{clubId}
+	</select>
+	<!-- 删除加入加入社团人员 -->
+	<delete id="deleteJoin2">
+		delete from joinclub
+		where id=#{id}
+	</delete>
+</mapper>

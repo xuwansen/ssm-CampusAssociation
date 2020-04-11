@@ -1,0 +1,117 @@
+body {
+	font-family: "microsoft yahei";
+	color: #000000;
+	text-align: center;
+	font: "寰蒋闆呴粦";
+}
+
+.font1 {
+	color: #434343;
+	line-height: 18pt;
+}
+
+.font2 {
+	color: #434343;
+	font-size: 14px;
+	line-height: 18pt;
+}
+
+.font3 {
+	color: #d0000e;
+	line-height: 17pt;
+	font-size: 15px;
+}
+
+.font4 {
+	color: #d0000e;
+	line-height: 26pt;
+	font-size: 16px;
+}
+
+/*header鏍峰紡寮�濮�*/
+.head-top {
+	height: 30px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+.container-fluid {
+	background: #E5ECF7;
+}
+
+.navbar-brand {
+	padding: 0 0;
+}
+/*header鏍峰紡缁撴潫*/
+/*logo鏍峰紡*/
+.navbar-left .navbar-brand>img {
+	height: auto;
+	margin-top: 0px;
+	margin-left: 50px;
+}
+/*瀵艰埅鏍忔牱寮�*/
+.navbar-nav {
+	margin-left: 230px;
+}
+/*杞挱鏍峰紡寮�濮�*/
+.picture {
+	margin: 0 auto;
+	width: 800px;
+	padding: 20px;
+}
+
+.item {
+	margin: 0 auto;
+}
+
+.XXX {
+	width: 1000px;
+	margin: 10px auto;;
+}
+/*杞挱鏍峰紡缁撴潫*/
+.clear {
+	clear: both;
+}
+/*娴姩绫诲紑濮�*/
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+/*娴姩绫荤粨鏉�*/
+/*琛ㄥ崟鏍峰紡寮�濮�*/
+.enroll {
+	width: 450px;
+	margin: 50px auto;
+}
+
+.biaodan {
+	width: 450px;
+	margin: 10px auto;
+}
+/*琛ㄥ崟鏍峰紡缁撴潫*/
+/*娉ㄥ唽鎴愬姛鍥剧墖鏍峰紡*/
+.zuche {
+	height: 300px;
+	margin: 30px auto;
+	text-align: center;
+	margin-top: 100px;
+}
+
+hr {
+	color: #CCCCCC;
+	height: 1px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 0px;
+	overflow: hidden;
+	margin-left: 50px;
+}
+
+.loginfont {
+	height: 15px;
+	text-align: center;
+	margin-bottom: 10px;
+}

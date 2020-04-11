@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 名字空间 1、用于区分 2、绑定接口 -->
+<!-- <mapper namespace="com.xit.pojo.UserMapper"> -->
+<mapper namespace="com.xit.dao.RoleDao">
+	<select id="selectRoleList" resultType="role">
+		select * from role
+	</select>
+</mapper>
